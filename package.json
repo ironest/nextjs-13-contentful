@@ -6,20 +6,27 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "types:contentful": "export $(cat .env.local | awk '!/^\\s*#/' | awk '!/^\\s*$/'); cf-content-types-generator --spaceId $CONTENTFUL_SPACE_ID --token $CONTENTFUL_MANAGEMENT_TOKEN -o models -X"
   },
   "dependencies": {
+    "@contentful/rich-text-html-renderer": "^16.1.0",
     "@types/node": "20.3.2",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
     "autoprefixer": "10.4.14",
+    "contentful": "^10.3.0",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
     "next": "13.4.7",
     "postcss": "8.4.24",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "sass": "^1.63.6",
     "tailwindcss": "3.3.2",
     "typescript": "5.1.5"
+  },
+  "devDependencies": {
+    "cf-content-types-generator": "^2.12.2"
   }
 }
