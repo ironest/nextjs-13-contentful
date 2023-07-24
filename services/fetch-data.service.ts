@@ -1,4 +1,4 @@
-import { TypeRatingsFields } from "@/models";
+import { TypeRatingsFields, TypeSeoMetaFields } from "@/models";
 import { EntrySkeletonType, createClient } from "contentful";
 
 const {
@@ -43,7 +43,17 @@ export async function fetchEntryBySlug(
     "fields.slug": slug,
   });
 
-  const response = entries?.items[0]?.fields?.content.map(
+  return entries?.items[0];
+}
+
+export async function fetchEntryContentBySlug(
+  contentType: string,
+  slug: string,
+  preview: boolean
+) {
+  const response = await fetchEntryBySlug(contentType, slug, preview);
+
+  return response?.fields?.content.map(
     (entry: any /*TODO using any as hack*/) => {
       return {
         id: entry?.sys?.id as string,
@@ -52,8 +62,15 @@ export async function fetchEntryBySlug(
       };
     }
   );
+}
 
-  return response || [];
+export async function fetchEntryMetaBySlug(
+  contentType: string,
+  slug: string,
+  preview: boolean
+) {
+  const response = await fetchEntryBySlug(contentType, slug, preview);
+  return <TypeSeoMetaFields>(<any>response?.fields?.seo)?.fields;
 }
 
 export async function fetchAllEntries(contentType: string, preview: boolean) {

@@ -1,4 +1,9 @@
+export type { TypeDivider, TypeDividerFields, TypeDividerSkeleton } from "./TypeDivider";
+export type { TypeNavbar, TypeNavbarFields, TypeNavbarSkeleton } from "./TypeNavbar";
 export type { TypeRatings, TypeRatingsFields, TypeRatingsSkeleton } from "./TypeRatings";
+export type { TypeSeoMeta, TypeSeoMetaFields, TypeSeoMetaSkeleton } from "./TypeSeoMeta";
+export type { TypeSrComparisonTable, TypeSrComparisonTableFields, TypeSrComparisonTableSkeleton } from "./TypeSrComparisonTable";
 export type { TypeSrDescription, TypeSrDescriptionFields, TypeSrDescriptionSkeleton } from "./TypeSrDescription";
+export type { TypeSrImportantNotes, TypeSrImportantNotesFields, TypeSrImportantNotesSkeleton } from "./TypeSrImportantNotes";
 export type { TypeSrTitle, TypeSrTitleFields, TypeSrTitleSkeleton } from "./TypeSrTitle";
 export type { TypeTopPerformer, TypeTopPerformerFields, TypeTopPerformerSkeleton } from "./TypeTopPerformer";
