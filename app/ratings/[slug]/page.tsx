@@ -1,12 +1,49 @@
 import ContentfulComponent from "@/components/contentful-component";
-import { fetchEntryBySlug } from "@/services/fetch-data.service";
+import {
+  fetchEntryContentBySlug,
+  fetchEntryMetaBySlug,
+} from "@/services/fetch-data.service";
+import { Metadata } from "next";
+
+type Props = {
+  params: { slug: string };
+};
+
+export async function generateMetadata({ params }: Props) {
+  const slugMeta = await fetchEntryMetaBySlug("ratings", params.slug, false);
+
+  const {
+    seoTitle: title,
+    description,
+    keywords,
+    noIndex,
+    noFollow,
+  } = slugMeta;
+  return {
+    title,
+    description,
+    keywords,
+    robots: {
+      index: !noIndex,
+      follow: !noFollow,
+      googleBot: {
+        index: !noIndex,
+        follow: !noFollow,
+      },
+    },
+  };
+}
 
 export default async function StarRating({
   params,
 }: {
   params: { slug: string };
 }) {
-  const slugContent = await fetchEntryBySlug("ratings", params.slug, false);
+  const slugContent = await fetchEntryContentBySlug(
+    "ratings",
+    params.slug,
+    false
+  );
   return (
     <>
       {slugContent?.length ? (
